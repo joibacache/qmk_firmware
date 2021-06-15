@@ -29,6 +29,6 @@ MIDI_ENABLE = no            # MIDI support
 BLUETOOTH_ENABLE = no       # Enable Bluetooth with the Adafruit EZ-Key HID
 AUDIO_ENABLE = no           # Audio output on port C6
 FAUXCLICKY_ENABLE = no      # Use buzzer to emulate clicky switches
-ENCODER_ENABLE = yes		# Enable support for rotary encoders
+ENCODER_ENABLE = no		# Enable support for rotary encoders
 
 DEFAULT_FOLDER = handwired/void40/default
