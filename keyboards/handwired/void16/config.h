@@ -37,16 +37,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  *                        1   2   3   4 
  */
-#define MATRIX_ROW_PINS { D3, D2, D1, D0 }
-#define MATRIX_COL_PINS { E6, D7, C6, D4 }
+#define MATRIX_ROW_PINS { D1, D4, D0, C6 }
+#define MATRIX_COL_PINS { F5, F6, F7, B1 }
 #define UNUSED_PINS
 
 /* COL2ROW, ROW2COL*/
 #define DIODE_DIRECTION COL2ROW
 
 /* Rotary Encoder Support */
-#define ENCODERS_PAD_A { F5 }
-#define ENCODERS_PAD_B { F4 }
+#define ENCODERS_PAD_A { B4 }
+#define ENCODERS_PAD_B { B5 }
 
 #define ENCODER_RESOLUTION 4
 #define TAP_CODE_DELAY 10
