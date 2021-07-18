@@ -54,7 +54,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case IL_NWDOC:
                 //Ctrl + N
                 // tap_code16(LCTL(KC_N));
-                tap_code16(LGUI(KC_N));
+                tap_code16(LCTL(KC_N));
                 break;
             case IL_FOPEN:
                 //Ctrl + O
@@ -206,4 +206,21 @@ void matrix_init_user(void) {
 }
 
 void matrix_scan_user(void) {
+}
+
+bool encoder_update_user(uint8_t index, bool clockwise) {
+    if (index == 0) { /* First encoder */
+        if (clockwise) {
+            tap_code(KC_WH_D);
+        } else {
+            tap_code(KC_WH_U);
+        }
+    } else if (index == 1) { /* Second encoder */
+        if (clockwise) {
+            tap_code(KC_DOWN);
+        } else {
+            tap_code(KC_UP);
+        }
+    }
+    return true;
 }

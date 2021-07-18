@@ -45,8 +45,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DIODE_DIRECTION COL2ROW
 
 /* Rotary Encoder Support */
-#define ENCODERS_PAD_A { B4 }
-#define ENCODERS_PAD_B { B5 }
+#define ENCODERS_PAD_A { B3 }
+#define ENCODERS_PAD_B { B2 }
 
 #define ENCODER_RESOLUTION 4
 #define TAP_CODE_DELAY 10
