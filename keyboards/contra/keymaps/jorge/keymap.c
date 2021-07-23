@@ -15,6 +15,7 @@
  */
 
 #include QMK_KEYBOARD_H
+#include "print.h"
 
 extern keymap_config_t keymap_config;
 
@@ -33,6 +34,16 @@ enum planck_keycodes {
   RAISE
 };
 
+enum {
+    TD_TOGGLE_COLEMAK,
+};
+
+// Tap Dance definitions
+qk_tap_dance_action_t tap_dance_actions[] = {
+    // Tap once for Escape, twice for Caps Lock
+    [TD_TOGGLE_COLEMAK] = ACTION_TAP_DANCE_LAYER_TOGGLE(KC_NO, _COLEMAK),
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
@@ -43,32 +54,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |  Up  |SftEnt|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      | LGUI | LCtrl| LAlt | Lower|    Space    | Raise|   /  | Left | Down |Right |
+ * |COLMAK| LGUI | LCtrl| LAlt | Lower|    Space    | Raise|   /  | Left | Down |Right |
  * `-----------------------------------------------------------------------------------'
  */ 
 [_QWERTY] = LAYOUT_planck_mit(
     KC_ESC,     KC_Q,     KC_W,     KC_E,     KC_R,       KC_T, KC_Y,   KC_U,       KC_I,     KC_O,     KC_P,     KC_BSPC,
     KC_TAB,     KC_A,     KC_S,     KC_D,     KC_F,       KC_G, KC_H,   KC_J,       KC_K,     KC_L,     KC_SCLN,  KC_QUOT,
     KC_LSFT,    KC_Z,     KC_X,     KC_C,     KC_V,       KC_B, KC_N,   KC_M,       KC_COMM,  KC_DOT,   KC_UP,    KC_SFTENT,
-    KC_NO,      KC_LGUI,  KC_LCTL,  KC_LALT,  MO(_LOWER),    KC_SPC,    MO(_RAISE), KC_SLSH,  KC_LEFT,  KC_DOWN,  KC_RGHT
+    TD(TD_TOGGLE_COLEMAK),      KC_LGUI,  KC_LCTL,  KC_LALT,  MO(_LOWER),    KC_SPC,    MO(_RAISE), KC_SLSH,  KC_LEFT,  KC_DOWN,  KC_RGHT
 ),
 
-  /* Colemak
+  /* Colemak 
    * ,-----------------------------------------------------------------------------------.
-   * | `    |   Q  |   W  |   F  |   P  |   G  |   J  |   L  |   U  |   Y  |   ;  | Bksp |
+   * |  Esc |   Q  |   W  |   F  |   P  |   G  |   J  |   L  |   U  |   Y  |   ;  | Bksp |
    * |------+------+------+------+------+-------------+------+------+------+------+------|
    * | Ctrl |   A  |   R  |   S  |   T  |   D  |   H  |   N  |   E  |   I  |   O  |  '   |
    * |------+------+------+------+------+------|------+------+------+------+------+------|
    * | Shift|   Z  |   X  |   C  |   V  |   B  |   K  |   M  |   ,  |   .  |   /  |Enter |
    * |------+------+------+------+------+------+------+------+------+------+------+------|
-   * | Esc  | Tab  | Alt  | GUI  |Lower |    Space    |Raise | Left |Right |  Up  |Down  |
+   * |QWERTY| Tab  | Alt  | GUI  |Lower |    Space    |Raise | Left |Right |  Up  |Down  |
    * `-----------------------------------------------------------------------------------'
    */
   [_COLEMAK] = LAYOUT_planck_mit(
-    KC_GRV,  KC_Q,   KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
+    KC_ESC,  KC_Q,   KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
     KC_LCTL, KC_A,   KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
     KC_LSFT, KC_Z,   KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT ,
-    KC_ESC,  KC_TAB, KC_LALT, KC_LGUI, LOWER,       KC_SPC,       RAISE,   KC_LEFT, KC_RGHT, KC_UP,   KC_DOWN
+    TD(TD_TOGGLE_COLEMAK),  KC_TAB, KC_LALT, KC_LGUI, MO(_LOWER),       KC_SPC,       MO(_RAISE),   KC_LEFT, KC_RGHT, KC_UP,   KC_DOWN
   ),
 
   /* Lower
@@ -138,15 +149,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case COLEMAK:
       if (record->event.pressed) {
+        print("mode just switched to COLEMAK and this is a huge string\n");
         set_single_persistent_default_layer(_COLEMAK);
       }
       return false;
       break;
     case LOWER:
       if (record->event.pressed) {
+        print("Lower ON\n");
         layer_on(_LOWER);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       } else {
+        print("Lower OFF\n");
         layer_off(_LOWER);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       }
@@ -154,9 +168,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case RAISE:
       if (record->event.pressed) {
+        print("Raise ON\n");
         layer_on(_RAISE);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       } else {
+        print("Raise OFF\n");
         layer_off(_RAISE);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       }
