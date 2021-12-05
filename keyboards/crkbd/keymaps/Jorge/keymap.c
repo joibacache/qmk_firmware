@@ -103,21 +103,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     
 /* Space fn
 * ,-----------------------------------------+      +-----------------------------------------.
-* |PRNTSC|      |      | Home |  UP  | End  |      | Home |  UP  | End  |      |      | Bksp |
+* |PRNTSC|RGB_H+|RGB_H-| Home |  UP  | End  |      | Home |  UP  | End  |      |      | Bksp |
 * |------+------+------+------+------+------+      +------+------+------+------+------+------|
-* | Del  |      |      | LEFT | DOWN | RIGHT|      | LEFT | DOWN |RIGHT | Mute | Vol+ |      |
+* | Del  |RGB_S+|RGB_S-|LEFT | DOWN | RIGHT|      | LEFT | DOWN |RIGHT | Mute | Vol+ |      |
 * |------+------+------+------+------+------+      +------+------+------+------+------+------|
-* |LCtrl |      |      |      |      |      |      |VSPREV| Play | Prev | Next | Vol- |      |
+* |LCtrl |RGB_V+|RGB_V-|      |      |      |      |VSPREV| Play | Prev | Next | Vol- |      |
 * `------+------+------+------+------+------+      +------+------+------+------+------+------'
-*                      | LAlt |      |LShift|      |SpaceF|      |      |
+*                      | LAlt |      |LShift|      |SpaceF|RGB_TG|RGB_MD|
 *                      `--------------------'      `--------------------'
 */
 
 [_SPACE_FN] = LAYOUT_split_3x6_3(
-    LSG(KC_S), KC_NO, KC_NO, KC_HOME, KC_UP,   KC_END,            KC_HOME, KC_UP,   KC_END,   KC_NO,   KC_NO,   KC_BSPC,
-    KC_DEL,    KC_NO, KC_NO, KC_LEFT, KC_DOWN, KC_RIGHT,          KC_LEFT, KC_DOWN, KC_RIGHT, KC_MUTE, KC_VOLU, KC_NO,
-    KC_LCTL,   KC_NO, KC_NO, KC_NO,   KC_NO,   KC_NO,             VS_PREV, KC_MPLY, KC_MPRV,  KC_MNXT, KC_VOLD, KC_NO,
-    KC_LALT,   KC_NO, KC_LSFT,                                    SPACE_FN, KC_NO, KC_NO
+    LSG(KC_S), RGB_HUI, RGB_HUD, KC_HOME, KC_UP,   KC_END,            KC_HOME, KC_UP,   KC_END,   KC_NO,   KC_NO,   KC_BSPC,
+    KC_DEL,    RGB_SAI, RGB_SAD, KC_LEFT, KC_DOWN, KC_RIGHT,          KC_LEFT, KC_DOWN, KC_RIGHT, KC_MUTE, KC_VOLU, KC_NO,
+    KC_LCTL,   RGB_VAI, RGB_VAD, KC_NO,   KC_NO,   KC_NO,             VS_PREV, KC_MPLY, KC_MPRV,  KC_MNXT, KC_VOLD, KC_NO,
+    KC_LALT,   KC_NO, KC_LSFT,                                    SPACE_FN, RGB_TOG, RGB_MOD
 )
 };
 
