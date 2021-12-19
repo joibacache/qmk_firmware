@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PRODUCT      FullSizeBlackPill
 
 /* key matrix size */
-#define MATRIX_COLS 20
+#define MATRIX_COLS 22
 #define MATRIX_ROWS 6
 
 /*
@@ -40,8 +40,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *                  ROW2COL = ROW = Anode (+), COL = Cathode (-, marked on diode)
  *
  */
-#define MATRIX_COL_PINS { B12,B13,B14,B15,A8,A9,A10,A0,A1,A15,B3,B4,B5,B6,B7,B8,A5,A4,A3,A2}
-#define MATRIX_ROW_PINS { B10,B2,B1,B0,A7,A6 }
+#define MATRIX_COL_PINS { B12,B14,B13,B15,A8,A11,A12,A15,B3,A5,A4,A3,A2,A1,A0,C15,C14,C13,A6,A7,B0,B1}
+#define MATRIX_ROW_PINS { B9,B8,B7,B6,B5,B4}
 #define UNUSED_PINS
 
 /* COL2ROW, ROW2COL */
