@@ -27,8 +27,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PRODUCT      FullSizeBlackPill
 
 /* key matrix size */
-#define MATRIX_COLS 22
-#define MATRIX_ROWS 6
+#define MATRIX_COLS 11
+#define MATRIX_ROWS 12
 
 /*
  * Keyboard Matrix Assignments
@@ -40,34 +40,37 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *                  ROW2COL = ROW = Anode (+), COL = Cathode (-, marked on diode)
  *
  */
-#define MATRIX_COL_PINS { B12,\
-                          B14,\
-                          B13,\
-                          B15,\
-                          A8,\
-                          A15,\
-                          B3,\
+
+#define MATRIX_COL_PINS { B10,\
+                          B0,\
+                          B1,\
+                          A7,\
+                          A6,\
                           A5,\
                           A4,\
                           A3,\
                           A2,\
                           A1,\
-                          A0,\
-                          A6,\
-                          A7,\
-                          B0,\
-                          B1\
+                          A0\
 }
-                           /*C15,C14,A11,A12,C13,*/
+                           
 
-#define MATRIX_ROW_PINS  {  B9,\
+#define MATRIX_ROW_PINS  {  B3,\
+                            A15,\
+                            A9,\
+                            A8,\
+                            B15,\
+                            B14,\
+                            B9,\
                             B8,\
                             B7,\
                             B6,\
                             B5,\
                             B4\
 }
-#define UNUSED_PINS { A9, A11, A12, C13, C14, C15, B10 }
+#define UNUSED_PINS { A11, A12, C13, C14, C15 }
+
+/*#saving C15 for leds :)*/
 
 
 
