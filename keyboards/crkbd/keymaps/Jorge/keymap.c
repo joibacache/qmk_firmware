@@ -17,6 +17,17 @@ enum corne_keycodes {
   RAISE,
   MAC
 };
+
+enum tapdances{
+  TD_CTL_SPC,
+  TD_GUI_SPC
+};
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+  [TD_CTL_SPC] = ACTION_TAP_DANCE_DOUBLE(KC_LCTL, KC_SPC),
+  [TD_GUI_SPC] = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, KC_SPC),
+};
+
 #define SPACE_FN LT(_SPACE_FN, KC_SPC)
 // #define SHIFT_SPC MT(MOD_LSFT, KC_SPC)
 #define VS_PREV RCTL(KC_MINS)
@@ -40,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,  KC_Q,  KC_W, KC_E, KC_R, KC_T,                 KC_Y, KC_U, KC_I,    KC_O,   KC_P,    KC_BSPC,
     KC_TAB,  KC_A,  KC_S, KC_D, KC_F, KC_G,                 KC_H, KC_J, KC_K,    KC_L,   KC_SCLN, KC_QUOT,
     KC_LSFT, KC_Z,  KC_X, KC_C, KC_V, KC_B,                 KC_N, KC_M, KC_COMM, KC_DOT, KC_NO,   KC_SFTENT,
-    KC_LALT, LOWER, KC_LCTL,                              SPACE_FN, RAISE, KC_SLSH  
+    KC_LALT, LOWER, TD(TD_CTL_SPC),                              SPACE_FN, RAISE, KC_SLSH  
 ),
 
 /* QWERTY - MAC
@@ -59,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,  KC_Q,  KC_W, KC_E, KC_R, KC_T,                 KC_Y, KC_U, KC_I,    KC_O,   KC_P,    KC_BSPC,
     KC_TAB,  KC_A,  KC_S, KC_D, KC_F, KC_G,                 KC_H, KC_J, KC_K,    KC_L,   KC_SCLN, KC_QUOT,
     KC_LGUI, KC_Z,  KC_X, KC_C, KC_V, KC_B,                 KC_N, KC_M, KC_COMM, KC_DOT, KC_NO,   KC_SFTENT,
-    KC_LALT, LOWER, KC_NO,                              SPACE_FN, RAISE, KC_SLSH  
+    KC_LALT, LOWER, TD(TD_GUI_SPC),                              SPACE_FN, RAISE, KC_SLSH  
 ),
 
     
