@@ -32,6 +32,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 // #define SHIFT_SPC MT(MOD_LSFT, KC_SPC)
 #define VS_PREV RCTL(KC_MINS)
 #define VS_NEXT RCS(KC_MINS)
+#define VS_CLOSETAB RCTL(KC_F4)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -136,9 +137,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     
 /* Space fn
 * ,-----------------------------------------+            +-----------------------------------------.
-* |PRNTSC|RGB_H+|RGB_H-| Home |  UP  | End  |            | Home |  UP  | End  |      |      | Bksp |
+* |PRNTSC|RGB_H+|RGB_H-|      |      |      |            | Home |  UP  | End  |VSCSTB|VSNEXT| Bksp |
 * |------+------+------+------+------+------+            +------+------+------+------+------+------|
-* | Del  |RGB_S+|RGB_S-|LEFT  | DOWN | RIGHT|            | LEFT | DOWN |RIGHT | Mute | Vol+ |      |
+* | Del  |RGB_S+|RGB_S-|      |      |      |            | LEFT | DOWN |RIGHT | Mute | Vol+ |      |
 * |------+------+------+------+------+------+            +------+------+------+------+------+------|
 * |LCtrl |RGB_V+|RGB_V-|      |      |RGB_MD|            |VSPREV| Play | Prev | Next | Vol- |      |
 * `------+------+------+--+------+---+--+------+      +--+------+---+--+---+--+------+------+------'
@@ -147,10 +148,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 */
 
 [_SPACE_FN] = LAYOUT_split_3x6_3(
-    LSG(KC_S), RGB_HUI, RGB_HUD, KC_HOME, KC_UP,   KC_END,        KC_HOME, KC_UP,   KC_END,   KC_NO,   KC_NO,   KC_BSPC,
-    KC_DEL,    RGB_SAI, RGB_SAD, KC_LEFT, KC_DOWN, KC_RIGHT,      KC_LEFT, KC_DOWN, KC_RIGHT, KC_MUTE, KC_VOLU, KC_NO,
-    KC_LSFT,   RGB_VAI, RGB_VAD, KC_NO,   KC_NO,   RGB_MOD,       VS_PREV, KC_MPLY, KC_MPRV,  KC_MNXT, KC_VOLD, KC_NO,
-    KC_LALT,   KC_LGUI, KC_LCTL,                                    SPACE_FN, RGB_TOG, RGB_MOD
+    LSG(KC_S), RGB_HUI, RGB_HUD, KC_NO, KC_NO, KC_NO,        KC_HOME, KC_UP,   KC_END,   VS_CLOSETAB, VS_NEXT, KC_BSPC,
+    KC_DEL,    RGB_SAI, RGB_SAD, KC_NO, KC_NO, KC_NO,        KC_LEFT, KC_DOWN, KC_RIGHT, KC_MUTE,     KC_VOLU, KC_NO,
+    KC_LSFT,   RGB_VAI, RGB_VAD, KC_NO, KC_NO, RGB_MOD,      VS_PREV, KC_MPLY, KC_MPRV,  KC_MNXT,     KC_VOLD, KC_NO,
+    KC_LALT,   KC_LGUI, KC_LCTL,                             SPACE_FN, RGB_TOG, RGB_MOD
 )
 };
 
